@@ -46,8 +46,10 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 #### Deployed Link
 
+here: (https://dinos2-d0ad4.firebaseapp.com/)
+
 #### Framework of choice
 
-
+Vue
 
 
