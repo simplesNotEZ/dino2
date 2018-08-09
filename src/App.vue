@@ -1,16 +1,20 @@
 <template>
   <div id="app">
-    <Header /> 
-    <Profiles />
-    <SkillList />
-    <Footer />   
+    <html>
+      <body>
+        <Header />
+        <main> 
+          <Profiles v-bind:dinosArray="dinos" />
+        </main>
+        <Footer /> 
+      </body>
+    </html>  
   </div>
 </template>
 
 <script>
 import Header from './components/Header'
 import Profiles from './components/Profiles'
-import SkillList from './components/SkillList'
 import Footer from './components/Footer'
 
 
@@ -19,13 +23,27 @@ export default {
   components: {
     Header,
     Profiles,
-    SkillList,
     Footer
+  },
+  data() {
+        return {
+            dinos: [],
+            apiURL: "../static/dinosaurs.json"
+        }
+  },
+  created() {
+    fetch(this.apiURL)
+      .then(response => response.json())
+      .then((json) => {
+        return json;
+      })
+      .then(json => this.dinos = json)
   }
 }
 </script>
 
 <style>
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -38,7 +56,6 @@ html {
   margin: 0;
   padding: 0;
 }
-
 body {
   margin: 0 30px 0 30px;
   padding: 0;
@@ -50,7 +67,6 @@ body {
 main {
   grid-row: 2/3;
 }
-
 main section {
   padding: 0 20px 0 20px;
   display: grid;
@@ -59,14 +75,13 @@ main section {
   margin: 0 auto;
   width: 50%;
 }
-
 small {
   color: black;
   font-size: .5rem;
   margin-left: 10px;
 }
-
 p {
   font-size: .8rem;
 }
+
 </style>
